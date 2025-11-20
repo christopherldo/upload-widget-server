@@ -19,7 +19,7 @@ export const uploadImageRoute: FastifyPluginAsyncZod = async server => {
         },
       },
     },
-    async (request, reply) => {
+    async (_, reply) => {
       return reply.status(201).send({ uploadId: 'teste' })
     }
   )
