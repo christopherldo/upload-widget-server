@@ -10,7 +10,10 @@
     "test:watch": "dotenv -e .env.test -- vitest",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "db:migrate:test": "dotenv -e .env.test -- drizzle-kit migrate",
+    "pretest": "npm run db:migrate:test",
+    "pretest:watch": "npm run db:migrate:test"
   },
   "keywords": [],
   "author": "",
