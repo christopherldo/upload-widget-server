@@ -1,7 +1,7 @@
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import z from 'zod'
 import { uploadImage } from '@/app/functions/upload-image'
-import { isRight, unwrapEither } from '@/shared/either'
+import { isLeft, unwrapEither } from '@/shared/either'
 
 export const uploadImageRoute: FastifyPluginAsyncZod = async server => {
   server.post(
@@ -33,18 +33,25 @@ export const uploadImageRoute: FastifyPluginAsyncZod = async server => {
         contentStream: uploadedFile.file,
       })
 
-      if (isRight(result)) {
-        console.log(unwrapEither(result))
-
-        return reply.status(201).send()
+      if (uploadedFile.file.truncated) {
+        return reply.status(400).send({
+          message: 'File size limit reached',
+        })
       }
 
-      const error = unwrapEither(result)
+      const error = isLeft(result)
 
-      switch (error.constructor.name) {
-        case 'InvalidFileFormat':
-          return reply.status(400).send({ message: error.message })
+      if (error) {
+        const errorObject = unwrapEither(result)
+
+        switch (error.constructor.name) {
+          case 'InvalidFileFormat':
+            return reply.status(400).send({ message: errorObject.message })
+        }
       }
+
+      console.log(unwrapEither(result))
+      return reply.status(201).send()
     }
   )
 }
