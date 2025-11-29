@@ -63,7 +63,7 @@ export async function exportUploads(
     cursor,
     new Transform({
       objectMode: true,
-      transform(chunks: unknown[], encoding, callback) {
+      transform(chunks: unknown[], _, callback) {
         for (const chunk of chunks) {
           this.push(chunk)
         }
