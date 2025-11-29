@@ -77,7 +77,7 @@ export async function exportUploads(
   const uploadToStorage = uploadFileToStorage({
     contentType: 'text/csv',
     folder: 'downloads',
-    fileName: `${new Date().toISOString()}-uploads.csv.`,
+    fileName: `${new Date().toISOString()}-uploads.csv`,
     contentStream: uploadToStorageStream,
   })
 
