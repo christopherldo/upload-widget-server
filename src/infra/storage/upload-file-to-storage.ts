@@ -13,7 +13,7 @@ const uploadFileToStorageInput = z.object({
   contentStream: z.instanceof(Readable),
 })
 
-type UploadFileToStorageInput = z.input<typeof uploadFileToStorage>
+type UploadFileToStorageInput = z.input<typeof uploadFileToStorageInput>
 
 export async function uploadFileToStorage(input: UploadFileToStorageInput) {
   const { folder, contentStream, contentType, fileName } =
