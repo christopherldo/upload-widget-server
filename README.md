@@ -63,7 +63,7 @@ Follow these steps to get your development environment running in less than 5 mi
 
 1.  **Clone the repository**
     ```bash
-    git clone https://github.com/your-username/upload-widget-server.git
+    git clone https://github.com/christopherldo/upload-widget-server.git
     cd upload-widget-server
     ```
 
