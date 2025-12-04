@@ -12,8 +12,8 @@
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "db:migrate:test": "dotenv -e .env.test -- drizzle-kit migrate",
-    "pretest": "npm run db:migrate:test",
-    "pretest:watch": "npm run db:migrate:test",
+    "pretest": "pnpm run db:migrate:test",
+    "pretest:watch": "pnpm run db:migrate:test",
     "build": "tsup-node"
   },
   "keywords": [],
